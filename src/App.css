@@ -1,0 +1,14 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-container {
+  width: 100%;
+  background-color: #FFE8E9;
+  color: #e52330;
+  border-radius: 8px;
+  padding: 16px;
+}
