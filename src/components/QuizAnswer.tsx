@@ -1,5 +1,4 @@
-
-export function QuizAnswer({ questionId, answer, handleAnswer }) {
+export function QuizAnswer({ questionId, answer, handleAnswer }: QuizAnswerProps) {
   return (
     <div>
       <input
@@ -10,4 +9,10 @@ export function QuizAnswer({ questionId, answer, handleAnswer }) {
       <label htmlFor={`Q[${questionId}]`}>{answer}</label>
     </div>
   );
+}
+
+type QuizAnswerProps = {
+  questionId: string;
+  answer: string;
+  handleAnswer: () => void;
 }

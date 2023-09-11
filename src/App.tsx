@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import { Quiz } from "./components/Quiz";
+import { Question, Quiz } from "./components/Quiz";
 import { getUsername, getQuestions } from "./utils/api";
 import { ErrorContainer } from "./components/ErrorContainer";
 import { CreateUsernameForm } from "./components/CreateUsernameForm";
 
 function App() {
   const [username, setUsername] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {

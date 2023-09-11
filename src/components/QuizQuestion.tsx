@@ -1,9 +1,10 @@
+import { Question } from "./Quiz";
 import { QuizAnswer } from "./QuizAnswer";
 
-export function QuizQuestion({ question, handleAnswer }) {
+export function QuizQuestion({ question, index, handleAnswer }: QuizQuestionProps) {
   return (
     <div>
-      <h2>Questão {question.index}</h2>
+      <h2>Questão {index}</h2>
       <h4>{question.question}</h4>
       {question.answers.map((answer, answerId) => {
         return (
@@ -16,4 +17,10 @@ export function QuizQuestion({ question, handleAnswer }) {
       })}
     </div>
   );
+}
+
+type QuizQuestionProps = {
+  question: Question;
+  index: number;
+  handleAnswer: () => void;
 }

@@ -1,8 +1,10 @@
 import { memo, useMemo, useState } from "react";
+
 import { QuizQuestion } from "./QuizQuestion";
 
 const MemoizedQuizQuestion = memo(QuizQuestion);
-export function Quiz({ questions }) {
+
+export function Quiz({ questions }: QuizProps) {
   const [step, setStep] = useState(0);
   const [haveAnsweredCurrentStep, setHaveAnsweredCurrentStep] = useState(false);
 
@@ -19,8 +21,10 @@ export function Quiz({ questions }) {
     return questions.map((question, idx) => (
       <MemoizedQuizQuestion
         key={idx}
-        question={{ ...question, index: step + idx + 1 }}
-        handleAnswer={handleAnswer} />
+        question={{ ...question }}
+        index={idx + 1}
+        handleAnswer={handleAnswer}
+      />
     ));
   }, [questions]);
 
@@ -35,3 +39,13 @@ export function Quiz({ questions }) {
     </div>
   );
 }
+
+export type Question = {
+  id: string;
+  question: string;
+  answers: string[];
+};
+
+type QuizProps = {
+  questions: Question[];
+};
