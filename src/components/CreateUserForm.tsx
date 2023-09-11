@@ -1,4 +1,4 @@
-export function CreateUsernameForm() {
+export function CreateUserForm() {
   return (
     <form>
       <h2>Crie um nome de usuário para começar</h2>

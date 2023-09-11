@@ -5,7 +5,7 @@ import { Quiz } from "./components/Quiz";
 import { Question } from "./types/Quiz";
 import { getUsername, getQuestions } from "./utils/api";
 import { ErrorContainer } from "./components/ErrorContainer";
-import { CreateUsernameForm } from "./components/CreateUsernameForm";
+import { CreateUserForm } from "./components/CreateUserForm";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ function App() {
     <main>
       {error && <ErrorContainer error={error} />}
       {!username ? (
-        <CreateUsernameForm />
+        <CreateUserForm />
       ) : (
         <>
           <p>Respondendo como: {username.toLocaleUpperCase()}</p>
