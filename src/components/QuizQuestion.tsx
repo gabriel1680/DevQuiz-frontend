@@ -15,7 +15,7 @@ export function QuizQuestion({ question, handleAnswer }: QuizQuestionProps) {
           handleAnswer={handleAnswer}
         />
       )),
-    [question.answers]
+    [handleAnswer, question.answers]
   );
 
   return (

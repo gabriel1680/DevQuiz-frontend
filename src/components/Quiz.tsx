@@ -28,13 +28,13 @@ export function Quiz({ questions }: QuizProps) {
     ));
   }, [questions]);
 
-  const lastStep = questions.length - 1;
+  const isLastStep = (questions.length - 1) === step;
 
   return (
     <div>
       {memoizedQuizQuestions[step]}
       <button onClick={handleNextStep} disabled={!haveAnsweredCurrentStep}>
-        {lastStep !== step ? "Próximo" : "Finalizar"}
+        {isLastStep ? "Finalizar" : "Próximo"}
       </button>
     </div>
   );
