@@ -1,18 +1,20 @@
-export function QuizAnswer({ questionId, answer, handleAnswer }: QuizAnswerProps) {
+import { Answer } from "../types/Quiz";
+
+export function QuizAnswer({ answer, handleAnswer }: QuizAnswerProps) {
   return (
     <div>
       <input
         type="radio"
-        name={`Q[${questionId}]`}
-        value={answer}
-        onChange={handleAnswer} />
-      <label htmlFor={`Q[${questionId}]`}>{answer}</label>
+        name={`Q[${answer.questionId}]`}
+        value={answer.text}
+        onChange={handleAnswer}
+      />
+      <label htmlFor={`Q[${answer.questionId}]`}>{answer.text}</label>
     </div>
   );
 }
 
 type QuizAnswerProps = {
-  questionId: string;
-  answer: string;
+  answer: Answer;
   handleAnswer: () => void;
-}
+};

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import { Question, Quiz } from "./components/Quiz";
+import { Quiz } from "./components/Quiz";
+import { Question } from "./types/Quiz";
 import { getUsername, getQuestions } from "./utils/api";
 import { ErrorContainer } from "./components/ErrorContainer";
 import { CreateUsernameForm } from "./components/CreateUsernameForm";

@@ -1,6 +1,7 @@
 import { memo, useMemo, useState } from "react";
 
 import { QuizQuestion } from "./QuizQuestion";
+import { Question } from "../types/Quiz";
 
 const MemoizedQuizQuestion = memo(QuizQuestion);
 
@@ -22,7 +23,6 @@ export function Quiz({ questions }: QuizProps) {
       <MemoizedQuizQuestion
         key={idx}
         question={{ ...question }}
-        index={idx + 1}
         handleAnswer={handleAnswer}
       />
     ));
@@ -39,12 +39,6 @@ export function Quiz({ questions }: QuizProps) {
     </div>
   );
 }
-
-export type Question = {
-  id: string;
-  question: string;
-  answers: string[];
-};
 
 type QuizProps = {
   questions: Question[];
