@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import { Quiz } from "./components/Quiz";
-import { Question } from "./types/Quiz";
+import { Answer, Question } from "./types/Quiz";
 import { getUsername, getQuestions } from "./utils/api";
 import { ErrorContainer } from "./components/ErrorContainer";
 import { CreateUserForm } from "./components/CreateUserForm";
@@ -22,16 +22,17 @@ function App() {
       .catch(error => setError(error.message));
   }, []);
 
+  async function onGameOver(answers: Answer[], score: number) {
+    console.log(answers, score);
+  }
+
   return (
     <main>
       {error && <ErrorContainer error={error} />}
       {!username ? (
         <CreateUserForm />
       ) : (
-        <>
-          <p>Respondendo como: {username.toLocaleUpperCase()}</p>
-          <Quiz questions={questions} />
-        </>
+        <Quiz questions={questions} onGameOver={onGameOver} />
       )}
     </main>
   );

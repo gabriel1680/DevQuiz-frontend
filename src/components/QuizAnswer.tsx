@@ -7,7 +7,7 @@ export function QuizAnswer({ answer, handleAnswer }: QuizAnswerProps) {
         type="radio"
         name={`Q[${answer.questionId}]`}
         value={answer.text}
-        onChange={handleAnswer}
+        onChange={() => handleAnswer(answer)}
       />
       <label htmlFor={`Q[${answer.questionId}]`}>{answer.text}</label>
     </div>
@@ -16,5 +16,5 @@ export function QuizAnswer({ answer, handleAnswer }: QuizAnswerProps) {
 
 type QuizAnswerProps = {
   answer: Answer;
-  handleAnswer: () => void;
+  handleAnswer: (answer: Answer) => void;
 };

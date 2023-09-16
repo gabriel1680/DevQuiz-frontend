@@ -1,0 +1,15 @@
+✔ Adicioanr o quiz; @done(23-09-11 00:10)
+✔ Adicionar listagem de dados externos; @done(23-09-11 00:11)
+✔ Extrair componentes e criar tipos com significados; @done(23-09-11 00:11)
+✔ Adicionar username; @done(23-09-11 00:11)
+✘ Botão de voltar para a pergunta anterior; @cancelled(23-09-16 14:27)
+✔ Adicionar captura de respostas em uma lista em memória; @done(23-09-16 13:51)
+✘ Voltar o estado da questão com a resposta selecionada; @cancelled(23-09-16 14:27)
+✔ Adicionar pontuação (1 pto por resposta certa); @done(23-09-16 14:55)
+☐ Tela de resultado com nome e pontuação + btn de retry;
+☐ Enviar as respostas e fechar a tela do quiz e abrir outra (home?);
+☐ Criar a tela de home com a lista dos quizzes;
+☐ Adicionar a dificuldade nos cards dos quizzes e a categoria;
+☐ Adicioanr os estilos;
+☐ Mostrar a dificuldade no quiz;
+☐ Adicioanr integração com a API externa (criar um Gateway?);

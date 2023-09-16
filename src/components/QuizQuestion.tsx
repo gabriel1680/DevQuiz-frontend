@@ -1,33 +1,26 @@
-import { memo, useMemo } from "react";
-
-import { Question } from "../types/Quiz";
+import { Answer, Question } from "../types/Quiz";
 import { QuizAnswer } from "./QuizAnswer";
 
-const MemoizedQuizAnswers = memo(QuizAnswer);
-
-export function QuizQuestion({ question, handleAnswer }: QuizQuestionProps) {
-  const memoizedAnswers = useMemo(
-    () =>
-      question.answers.map((answer, answerId) => (
-        <MemoizedQuizAnswers
-          key={answerId}
-          answer={answer}
-          handleAnswer={handleAnswer}
-        />
-      )),
-    [handleAnswer, question.answers]
-  );
-
+export function QuizQuestion({
+  question,
+  handleAnswer,
+}: QuizQuestionProps) {
   return (
     <div>
       <h2>Questão {question.index}</h2>
       <h4>{question.text}</h4>
-      {memoizedAnswers}
+      {question.answers.map((answer) => (
+        <QuizAnswer
+          key={answer.id}
+          answer={answer}
+          handleAnswer={handleAnswer}
+        />
+      ))}
     </div>
   );
 }
 
 type QuizQuestionProps = {
   question: Question;
-  handleAnswer: () => void;
+  handleAnswer: (answer: Answer) => void;
 };

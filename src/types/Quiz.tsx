@@ -9,4 +9,5 @@ export type Question = {
   index: number;
   text: string;
   answers: Answer[];
+  correctAnswer: string;
 };
