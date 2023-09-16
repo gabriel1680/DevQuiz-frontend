@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { UserQuiz } from "../types/Quiz";
 import { getUserQuizzes } from "../utils/api";
 
-export default function useGetPlayerAnsweredQuizzes(username: string) {
+export default function useGetPlayerAnsweredQuizzes(
+  username: string,
+  refetch: number
+) {
   const [quizzes, setQuizzes] = useState<UserQuiz[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +15,7 @@ export default function useGetPlayerAnsweredQuizzes(username: string) {
       .then(quizzes => setQuizzes(quizzes))
       .catch(error => setError(error.message))
       .finally(() => setIsLoading(false));
-  }, [username]);
+  }, [username, refetch]);
 
-  return { quizzes, error, isLoading }
+  return { quizzes, error, isLoading };
 }

@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { getUsername } from "../utils/api";
 
-export function useGetPlayerInfo()
-{
+export function useGetPlayerInfo() {
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     getUsername()
       .then(username => setUsername(username))
       .catch(error => setError(error.message))

@@ -40,3 +40,7 @@ export async function getUserQuizzes(username: string): Promise<UserQuiz[]> {
     }
   ];
 }
+
+export async function removePlayerQuiz(username:string, quizId:string) {
+  return;
+}

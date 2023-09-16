@@ -1,11 +1,26 @@
 import { ErrorContainer } from "../components/ErrorContainer";
 import useGetPlayerAnsweredQuizzes from "../hooks/useGetPlayerAnsweredQuizzes";
 import usePlayerInfo from "../hooks/usePlayerInfo";
+import { UserQuiz } from "../types/Quiz";
+import { removePlayerQuiz } from "../utils/api";
+import { PlayerQuizCard } from "../components/PlayerQuizCard";
+import { useState } from "react";
 
 export default function Home() {
   const username = usePlayerInfo();
+  const [refetch, setRefetch] = useState(0);
 
-  const { quizzes, error, isLoading } = useGetPlayerAnsweredQuizzes(username);
+  const { quizzes, error, isLoading } = useGetPlayerAnsweredQuizzes(
+    username,
+    refetch
+  );
+
+  function onRemoveQuiz(quiz: UserQuiz) {
+    setRefetch(prev => (prev += 1));
+    removePlayerQuiz(username, quiz.id).catch(() =>
+      alert("Houve um erro ao remover o quiz")
+    );
+  }
 
   if (isLoading) {
     return "Carregado seus desafios respondidos...";
@@ -24,12 +39,11 @@ export default function Home() {
       <div>Esses seus seus últimos envios:</div>
       <ul>
         {quizzes.map(quiz => (
-          <div key={quiz.id}>
-            <div>
-              Data de envio: {new Date(quiz.answeredAt).toLocaleDateString()}
-            </div>
-            <div>Pontuação: {quiz.score}</div>
-          </div>
+          <PlayerQuizCard
+            key={quiz.id}
+            quiz={quiz}
+            onRemoveQuiz={onRemoveQuiz}
+          />
         ))}
       </ul>
     </main>
