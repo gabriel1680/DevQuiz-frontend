@@ -6,8 +6,10 @@
 ✔ Adicionar captura de respostas em uma lista em memória; @done(23-09-16 13:51)
 ✘ Voltar o estado da questão com a resposta selecionada; @cancelled(23-09-16 14:27)
 ✔ Adicionar pontuação (1 pto por resposta certa); @done(23-09-16 14:55)
-☐ Tela de resultado com nome e pontuação + btn de retry;
-☐ Enviar as respostas e fechar a tela do quiz e abrir outra (home?);
+✘ Enviar as respostas e fechar a tela do quiz e abrir outra (home?); @cancelled(23-09-16 16:14)
+✔ Tela de resultado com nome e pontuação + btn de retry; @done(23-09-16 16:14)
+☐ Adicionar um context com o username compartilhado para todo o APP;
+☐ Adicinar Home - iniciar quiz ou ver as respostas;
 ☐ Criar a tela de home com a lista dos quizzes;
 ☐ Adicionar a dificuldade nos cards dos quizzes e a categoria;
 ☐ Adicioanr os estilos;

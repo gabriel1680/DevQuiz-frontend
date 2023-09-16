@@ -11,3 +11,9 @@ export type Question = {
   answers: Answer[];
   correctAnswer: string;
 };
+
+export type UserQuiz = {
+  id: string;
+  score: number;
+  answeredAt: Date;
+}

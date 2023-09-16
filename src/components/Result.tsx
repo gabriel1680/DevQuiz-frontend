@@ -9,11 +9,14 @@ export default function Result({
       <div>Fim de jogo</div>
       <div>Jogador: {username}</div>
       <div>Respostas corretas: {finalScore}</div>
-      <div>Respostas erradas: {totalScore - finalScore }</div>
+      <div>Respostas erradas: {totalScore - finalScore}</div>
       <div>
         Pontuação: {finalScore}/{totalScore}
       </div>
-      <button onClick={onRetry}>Iniciar uma nova tentativa</button>
+      <div>
+        <button onClick={onRetry}>Iniciar uma nova tentativa</button>
+        <a href="/">Voltar para home</a>
+      </div>
     </>
   );
 }

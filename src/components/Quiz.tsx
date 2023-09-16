@@ -40,9 +40,12 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
     setHaveAnsweredCurrentStep(false);
   }
 
+  if (isQuestionsEmpty()) {
+    return <p>Nenhuma questão foi encontrada )=</p>
+  }
+
   return (
     <div>
-      <>
         <QuizQuestion question={currentQuestion} handleAnswer={handleAnswer} />
         <button
           onClick={isLastStep() ? onLastStep : onNextStep}
@@ -50,9 +53,12 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
         >
           {isLastStep() ? "Finalizar" : "Próximo"}
         </button>
-      </>
     </div>
   );
+
+  function isQuestionsEmpty() {
+    return questions.length === 0;
+  }
 
   function isLastStep() {
     return questions.length - 1 === step;

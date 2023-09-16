@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 import { mock } from "./mock";
-import { Question } from "../types/Quiz";
+import { Question, UserQuiz } from "../types/Quiz";
 
 // https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple 
 export const API_URL =  import.meta.env.VITE_QUIZ_API_URL || "https://opentdb.com/api.php";
@@ -23,4 +23,20 @@ export async function getQuestions(): Promise<Question[]> {
       correctAnswer: question.correct_answer,
     }
   });
+}
+
+export async function getUserQuizzes(username: string): Promise<UserQuiz[]> {
+  console.log(username);
+  return [
+    {
+      id: uuid(), 
+      answeredAt: new Date('2022-08-16'),
+      score: 2,
+    },
+    {
+      id: uuid(), 
+      answeredAt: new Date('2022-08-16'),
+      score: 4,
+    }
+  ];
 }
