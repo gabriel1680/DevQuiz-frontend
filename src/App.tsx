@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react";
-
 import { RouterProvider } from "react-router";
+
 import "./App.css";
 import { PlayerContext } from "./context/PlayerContext";
 import { router } from "./router";
-import { getUsername } from "./utils/api";
 import { CreateUserForm } from "./components/CreateUserForm";
+import { useGetPlayerInfo } from "./hooks/useGetPlayerInfo";
+import { ErrorContainer } from "./components/ErrorContainer";
 
 function App() {
-  const [username, setUsername] = useState("");
+  const { username, error, isLoading } = useGetPlayerInfo();
 
-  useEffect(() => {
-    getUsername()
-      .then(username => setUsername(username))
-      .catch(error => alert(error.message));
-  }, []);
+  if (isLoading) {
+    return "Buscando dados do jogador...";
+  }
 
   return (
     <PlayerContext.Provider value={username}>
+      {error && <ErrorContainer error={error} />}
       {!username ? <CreateUserForm /> : <RouterProvider router={router} />}
     </PlayerContext.Provider>
   );

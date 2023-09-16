@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { ErrorContainer } from "../components/ErrorContainer";
 import { Quiz } from "../components/Quiz";
-import Result from "../components/Result";
+import ScoreResult from "../components/ScoreResult";
 import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
 import usePlayerInfo from "../hooks/usePlayerInfo";
 import { Answer } from "../types/Quiz";
@@ -10,10 +10,11 @@ import { Answer } from "../types/Quiz";
 export default function QuizView() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const [refetch, setRefetch] = useState(0);
 
   const username = usePlayerInfo();
 
-  const { questions, error, isLoading } = useGetRandomQuestions();
+  const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
   async function onGameOver(answers: Answer[], score: number) {
     // send to backend - quiz id + username + score
@@ -24,10 +25,11 @@ export default function QuizView() {
   async function onRetry(): Promise<void> {
     setIsGameOver(false);
     setFinalScore(0);
+    setRefetch(prev => (prev += 1));
   }
 
   if (isLoading) {
-    return 'Carregando as questões...';
+    return "Carregando as questões...";
   }
 
   return (
@@ -36,7 +38,7 @@ export default function QuizView() {
       {!isGameOver ? (
         <Quiz questions={questions} onGameOver={onGameOver} />
       ) : (
-        <Result
+        <ScoreResult
           username={username}
           finalScore={finalScore}
           totalScore={getTotalScore()}
