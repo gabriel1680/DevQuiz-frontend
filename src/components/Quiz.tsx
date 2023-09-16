@@ -17,12 +17,26 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
   }
 
   function onNextStep() {
-    if (
-      currentQuestion.correctAnswer === answers.get(currentQuestion.id)?.text
-    ) {
+    if (isCorrectAnswer()) {
       setScore(score => (score += 1));
     }
     setStep(prevStep => (prevStep += 1));
+    setHaveAnsweredCurrentStep(false);
+  }
+
+  function onLastStep() {
+    let finalScore = score;
+    if (isCorrectAnswer()) {
+      finalScore++;
+    }
+    onGameOver(Array.from(answers.values()), finalScore);
+    reset();
+  }
+
+  function reset() {
+    setStep(0);
+    setScore(0);
+    setAnswers(new Map());
     setHaveAnsweredCurrentStep(false);
   }
 
@@ -31,7 +45,7 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
       <>
         <QuizQuestion question={currentQuestion} handleAnswer={handleAnswer} />
         <button
-          onClick={onNextStep}
+          onClick={isLastStep() ? onLastStep : onNextStep}
           disabled={!haveAnsweredCurrentStep}
         >
           {isLastStep() ? "Finalizar" : "Próximo"}
@@ -44,8 +58,10 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
     return questions.length - 1 === step;
   }
 
-  function isGameOver() {
-    return questions.length === step;
+  function isCorrectAnswer() {
+    return (
+      currentQuestion.correctAnswer === answers.get(currentQuestion.id)?.text
+    );
   }
 }
 

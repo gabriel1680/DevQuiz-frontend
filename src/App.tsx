@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import { Quiz } from "./components/Quiz";
-import { Answer, Question } from "./types/Quiz";
-import { getUsername, getQuestions } from "./utils/api";
-import { ErrorContainer } from "./components/ErrorContainer";
 import { CreateUserForm } from "./components/CreateUserForm";
+import { ErrorContainer } from "./components/ErrorContainer";
+import { Quiz } from "./components/Quiz";
+import Result from "./components/Result";
+import { Answer, Question } from "./types/Quiz";
+import { getQuestions, getUsername } from "./utils/api";
 
 function App() {
   const [username, setUsername] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState("");
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
 
   useEffect(() => {
     getUsername()
@@ -23,7 +26,14 @@ function App() {
   }, []);
 
   async function onGameOver(answers: Answer[], score: number) {
-    console.log(answers, score);
+    // send to backend - quiz id + username + score
+    setIsGameOver(true);
+    setFinalScore(score);
+  }
+
+  async function onRetry(): Promise<void> {
+    setIsGameOver(false);
+    setFinalScore(0);
   }
 
   return (
@@ -31,11 +41,22 @@ function App() {
       {error && <ErrorContainer error={error} />}
       {!username ? (
         <CreateUserForm />
-      ) : (
+      ) : !isGameOver ? (
         <Quiz questions={questions} onGameOver={onGameOver} />
+      ) : (
+        <Result
+          username={username}
+          finalScore={finalScore}
+          totalScore={getTotalScore()}
+          onRetry={onRetry}
+        />
       )}
     </main>
   );
+
+  function getTotalScore() {
+    return questions.length;
+  }
 }
 
 export default App;
