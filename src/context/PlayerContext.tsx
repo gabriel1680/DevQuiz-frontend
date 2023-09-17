@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-export const PlayerContext = createContext("");
+export const PlayerContext = createContext<undefined | string>(undefined);
 

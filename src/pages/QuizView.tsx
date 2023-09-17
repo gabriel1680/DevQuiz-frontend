@@ -4,10 +4,11 @@ import { ErrorContainer } from "../components/ErrorContainer";
 import { Quiz } from "../components/Quiz";
 import ScoreResult from "../components/ScoreResult";
 import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
-import usePlayerInfo from "../hooks/usePlayerInfo";
+import usePlayerInfo, { useQuizGateway } from "../hooks/context-hooks";
 import { Answer } from "../types/Quiz";
 
 export default function QuizView() {
+  const quizGetaway = useQuizGateway();
   const [isGameOver, setIsGameOver] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [refetch, setRefetch] = useState(0);
@@ -17,7 +18,11 @@ export default function QuizView() {
   const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
   async function onGameOver(answers: Answer[], score: number) {
-    // send to backend - quiz id + username + score
+    await quizGetaway.saveQuizScore({
+      id: crypto.randomUUID(),
+      score,
+      answeredAt: new Date(),
+    });
     setIsGameOver(true);
     setFinalScore(score);
   }

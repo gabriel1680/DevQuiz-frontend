@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ScoreResult({
   username,
   finalScore,
@@ -15,7 +17,7 @@ export default function ScoreResult({
       </div>
       <div>
         <button onClick={onRetry}>Iniciar uma nova tentativa</button>
-        <a href="/">Voltar para home</a>
+        <Link to="/">Voltar para home</Link>
       </div>
     </>
   );

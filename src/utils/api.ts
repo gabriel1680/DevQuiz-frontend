@@ -1,46 +1,12 @@
-import { v4 as uuid } from "uuid";
+import axios from "axios";
 
-import { mock } from "./mock";
-import { Question, UserQuiz } from "../types/Quiz";
+// https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
+export const QUESTIONS_API_URL =
+  import.meta.env.VITE_QUIZ_API_URL || "https://opentdb.com/api.php";
 
-// https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple 
-export const API_URL =  import.meta.env.VITE_QUIZ_API_URL || "https://opentdb.com/api.php";
-export const BACKEND_URL =  import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+export const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
 
-export async function getUsername() {
-  return "Gabriel";
-}
+export const oQuestionsApi = axios.create({ baseURL: QUESTIONS_API_URL });
 
-export async function getQuestions(): Promise<Question[]> {
-  return mock.map((question, idx) => {
-    const questionId = uuid();
-    return {
-      id: questionId,
-      ...question,
-      text: question.question,
-      index: idx + 1,
-      answers: [...question.incorrect_answers, question.correct_answer].map((answer) => ({ id: uuid(), questionId, text: answer })),
-      correctAnswer: question.correct_answer,
-    }
-  });
-}
-
-export async function getUserQuizzes(username: string): Promise<UserQuiz[]> {
-  console.log(username);
-  return [
-    {
-      id: uuid(), 
-      answeredAt: new Date('2022-08-16'),
-      score: 2,
-    },
-    {
-      id: uuid(), 
-      answeredAt: new Date('2022-08-16'),
-      score: 4,
-    }
-  ];
-}
-
-export async function removePlayerQuiz(username:string, quizId:string) {
-  return;
-}
+export const oBackendApi = axios.create({ baseURL: BACKEND_URL });

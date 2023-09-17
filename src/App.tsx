@@ -1,14 +1,33 @@
 import { RouterProvider } from "react-router";
+import { useState } from "react";
 
 import "./App.css";
-import { PlayerContext } from "./context/PlayerContext";
-import { router } from "./router";
-import { CreateUserForm } from "./components/CreateUserForm";
-import { useGetPlayerInfo } from "./hooks/useGetPlayerInfo";
 import { ErrorContainer } from "./components/ErrorContainer";
+import Modal from "./components/Modal";
+import { UsernameForm } from "./components/UsernameForm";
+import { PlayerContext } from "./context/PlayerContext";
+import { useGetPlayerInfo } from "./hooks/useGetPlayerInfo";
+import { usePlayerGateway } from "./hooks/context-hooks";
+import { router } from "./router";
 
 function App() {
-  const { username, error, isLoading } = useGetPlayerInfo();
+  const [showChangeUsername, setShowChangeUsername] = useState(false);
+  const [refetch, setRefetch] = useState(0);
+
+  const playerGateway = usePlayerGateway();
+
+  const { username, error, isLoading } = useGetPlayerInfo(refetch);
+
+  async function onCreateUsername(name: string) {
+    await playerGateway.saveUsername(name);
+    setRefetch(prev => (prev += 1));
+  }
+
+  async function onChangeUsername(name: string) {
+    await playerGateway.changeUsername(name);
+    setRefetch(prev => (prev += 1));
+    setShowChangeUsername(false);
+  }
 
   if (isLoading) {
     return "Buscando dados do jogador...";
@@ -17,7 +36,21 @@ function App() {
   return (
     <PlayerContext.Provider value={username}>
       {error && <ErrorContainer error={error} />}
-      {!username ? <CreateUserForm /> : <RouterProvider router={router} />}
+      {showChangeUsername && (
+        <Modal onClose={() => setShowChangeUsername(false)}>
+          <UsernameForm onSubmit={onChangeUsername} username={username} />
+        </Modal>
+      )}
+      {!username ? (
+        <UsernameForm onSubmit={onCreateUsername} />
+      ) : (
+        <>
+          <button onClick={() => setShowChangeUsername(true)}>
+            Alterar nome de usuário
+          </button>
+          <RouterProvider router={router} />
+        </>
+      )}
     </PlayerContext.Provider>
   );
 }

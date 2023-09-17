@@ -11,7 +11,7 @@
 ✔ Adicionar um context com o username compartilhado para todo o APP; @done(23-09-16 18:45)
 ✔ Adicinar Home - iniciar quiz ou ver as respostas; @done(23-09-16 18:45)
 ✔ Criar a tela de home com a lista dos quizzes; @done(23-09-16 18:45)
-☐ Deletar respostas antigas;
+✔ Deletar respostas antigas; @done(23-09-16 19:06)
 ☐ Alterar nome de usuário;
 ☐ Adicionar a dificuldade nos cards dos quizzes e a categoria;
 ☐ Adicioanr os estilos;
