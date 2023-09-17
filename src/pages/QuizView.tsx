@@ -4,7 +4,7 @@ import { ErrorContainer } from "../components/ErrorContainer";
 import { Quiz } from "../components/Quiz";
 import ScoreResult from "../components/ScoreResult";
 import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
-import usePlayerInfo, { useQuizGateway } from "../hooks/context-hooks";
+import usePlayer, { useQuizGateway } from "../hooks/context-hooks";
 import { Answer } from "../types/Quiz";
 
 export default function QuizView() {
@@ -13,7 +13,7 @@ export default function QuizView() {
   const [finalScore, setFinalScore] = useState(0);
   const [refetch, setRefetch] = useState(0);
 
-  const username = usePlayerInfo();
+  const player = usePlayer();
 
   const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
@@ -21,6 +21,7 @@ export default function QuizView() {
     try {
       await quizGetaway.saveQuizScore({
         id: crypto.randomUUID(),
+        playerId: player.id,
         score,
         answeredAt: new Date(),
       });
@@ -49,7 +50,7 @@ export default function QuizView() {
         <Quiz questions={questions} onGameOver={onGameOver} />
       ) : (
         <ScoreResult
-          username={username}
+          username={player.username}
           finalScore={finalScore}
           totalScore={getTotalScore()}
           onRetry={onRetry}

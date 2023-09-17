@@ -14,6 +14,7 @@ export type Question = {
 
 export type UserQuiz = {
   id: string;
+  playerId: number;
   score: number;
   answeredAt: Date;
 }
