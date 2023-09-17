@@ -7,6 +7,7 @@ import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
 import usePlayer, { useQuizGateway } from "../hooks/context-hooks";
 import { Answer } from "../types/Quiz";
 import { getUniqueId } from "../utils/id";
+import { Link } from "react-router-dom";
 
 export default function QuizView() {
   const quizGetaway = useQuizGateway();
@@ -46,6 +47,7 @@ export default function QuizView() {
 
   return (
     <>
+      <Link to="/">&larr; Voltar para home</Link>
       {error && <ErrorContainer error={error} />}
       {!isGameOver ? (
         <Quiz questions={questions} onGameOver={onGameOver} />
