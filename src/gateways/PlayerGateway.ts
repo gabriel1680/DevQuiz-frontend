@@ -1,5 +1,7 @@
+import { Player } from "../types/Player";
+
 export interface PlayerGateway {
-    getUsername(): Promise<string>;
-    saveUsername(username: string): Promise<void>;
-    changeUsername(username: string): Promise<void>;
+    getPlayer(id: number): Promise<Player>;
+    createPlayer(username: string): Promise<Player>;
+    changeUsername(player: Player): Promise<void>;
 }

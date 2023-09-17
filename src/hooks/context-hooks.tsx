@@ -10,7 +10,7 @@ import {
 import { QuizGateway } from "../gateways/QuizGateway";
 import { RandomQuestionsGateway } from "../gateways/RandomQuestionsGateway";
 
-export default function usePlayerInfo() {
+export default function usePlayer() {
   const ctx = useContext(PlayerContext);
   if (!ctx) throw new Error('PlayerContext not provided');
   return ctx;

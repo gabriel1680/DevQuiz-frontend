@@ -1,17 +1,19 @@
+import { Player } from "../../types/Player";
 import { PlayerGateway } from "../PlayerGateway";
 
 export class InMemoryPlayerGateway implements PlayerGateway {
-    private username = '';
+  private player: Player = { id: crypto.randomUUID(), username: "" };
 
-    async getUsername(): Promise<string> {
-        return this.username;
-    }
+  async getPlayer(id: string): Promise<Player> {
+    console.log(id);
+    return this.player;
+  }
 
-    async saveUsername(username: string): Promise<void> {
-        this.username = username;
-    }
+  async createPlayer(player: Player): Promise<void> {
+    this.player = player;
+  }
 
-    async changeUsername(username: string): Promise<void> {
-        this.username = username;
-    }
+  async changeUsername(player: Player): Promise<void> {
+    this.player = player;
+  }
 }

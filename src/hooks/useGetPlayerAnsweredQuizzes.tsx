@@ -3,7 +3,7 @@ import { UserQuiz } from "../types/Quiz";
 import { useQuizGateway } from "./context-hooks";
 
 export default function useGetPlayerAnsweredQuizzes(
-  username: string,
+  playerId: number,
   refetch: number
 ) {
   const quizGateway = useQuizGateway();
@@ -13,11 +13,11 @@ export default function useGetPlayerAnsweredQuizzes(
 
   useEffect(() => {
     quizGateway
-      .getQuizAnswers(username)
+      .getQuizAnswers(playerId)
       .then(quizzes => setQuizzes(quizzes))
       .catch(error => setError(error.message))
       .finally(() => setIsLoading(false));
-  }, [username, refetch, quizGateway]);
+  }, [playerId, refetch, quizGateway]);
 
   return { quizzes, error, isLoading };
 }

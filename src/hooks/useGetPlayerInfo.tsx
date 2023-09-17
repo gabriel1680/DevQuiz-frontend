@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 
 import { usePlayerGateway } from "./context-hooks";
+import { Player } from "../types/Player";
 
 export function useGetPlayerInfo(refetch: number) {
+  const playerId = getPlayerId();
   const playerGateway = usePlayerGateway();
-  const [username, setUsername] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [player, setPlayer] = useState<undefined | Player>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    playerGateway
-      .getUsername()
-      .then(username => setUsername(username))
-      .catch(error => setError(error.message))
-      .finally(() => setIsLoading(false));
-  }, [refetch]);
+    if (playerId) {
+      setIsLoading(true);
+      playerGateway
+        .getPlayer(playerId)
+        .then(player => setPlayer(player))
+        .catch(error => setError(error.message))
+        .finally(() => setIsLoading(false));
+    }
+  }, [playerGateway, playerId, refetch]);
 
-  return { username, error, isLoading };
+  return { player, error, isLoading };
+}
+
+function getPlayerId(): number | undefined {
+  const playerId = localStorage.getItem("playerId");
+  if (!playerId) return undefined;
+  return parseInt(playerId);
 }

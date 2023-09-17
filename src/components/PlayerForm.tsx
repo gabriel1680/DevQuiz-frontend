@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Player } from "../types/Player";
 
-export function UsernameForm({ username = "", onSubmit }: UsernameFormProps) {
+export function PlayerForm({ player, onSubmit }: PlayerFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [value, setValue] = useState(username);
+  const [value, setValue] = useState<Player>(player ?? createEmptyPlayer());
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -10,14 +11,14 @@ export function UsernameForm({ username = "", onSubmit }: UsernameFormProps) {
     onSubmit(value).finally(() => setIsLoading(false));
   }
 
-  function onChange(newName: string) {
-    setValue(newName);
+  function onChange(username: string) {
+    setValue(prev => ({ ...prev, username }));
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>
-        {username
+        {player
           ? "Altere seu nome de usuário"
           : "Crie um nome de usuário para começar"}
       </h2>
@@ -26,18 +27,25 @@ export function UsernameForm({ username = "", onSubmit }: UsernameFormProps) {
         name="username"
         id="username"
         disabled={isLoading}
-        value={value}
+        value={value.username}
         onChange={e => onChange(e.target.value)}
         placeholder="Insira seu username"
       />
       <button type="submit" disabled={isLoading}>
-        {username ? "Alterar" : "Iniciar"}
+        {player ? "Alterar" : "Iniciar"}
       </button>
     </form>
   );
+
+  function createEmptyPlayer() {
+    return {
+      id: 0,
+      username: "",
+    };
+  }
 }
 
-type UsernameFormProps = {
-  username?: string;
-  onSubmit: (username: string) => Promise<void>;
+type PlayerFormProps = {
+  player?: Player;
+  onSubmit: (player: Player) => Promise<void>;
 };

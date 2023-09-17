@@ -1,4 +1,6 @@
 import { createContext } from "react";
 
-export const PlayerContext = createContext<undefined | string>(undefined);
+import { Player } from "../types/Player";
+
+export const PlayerContext = createContext<undefined | Player>(undefined);
 
