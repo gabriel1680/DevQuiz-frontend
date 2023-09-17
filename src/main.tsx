@@ -11,8 +11,6 @@ import
 import { AppGatewayFactory } from "./gateways/AppGatewayFactory.js";
 import "./index.css";
 
-const isDev = import.meta.env.DEV;
-
 const { playerGateway, quizGateway, randomQuestionsGateway } =
   AppGatewayFactory.create("axios");
 
