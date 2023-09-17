@@ -21,10 +21,14 @@ function App() {
 
   async function onCreateUsername(playerData: Player) {
     try {
-      const player = await playerGateway.createPlayer(playerData.username);
-      localStorage.setItem("playerId", String(player.id));
+      const playerOrError = await playerGateway.createPlayer(playerData.username);
+      if (playerOrError instanceof Error) {
+        return alert(playerOrError.message);
+      }
+      localStorage.setItem("playerId", String(playerOrError.id));
       setRefetch(prev => (prev += 1));
     } catch (error) {
+      console.log(error);
       alert("Parece que algo deu errado.");
       console.error(error);
     }
@@ -32,7 +36,10 @@ function App() {
 
   async function onChangeUsername(player: Player) {
     try {
-      await playerGateway.changeUsername(player);
+      const error = await playerGateway.changeUsername(player);
+      if (error instanceof Error) {
+        return alert(error.message);
+      }
       setRefetch(prev => (prev += 1));
       setShowChangeUsername(false);
     } catch (error) {

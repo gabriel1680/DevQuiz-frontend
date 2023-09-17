@@ -31,7 +31,7 @@ export class AxiosQuizGateway implements QuizGateway {
 }
 
 type UserQuizData = {
-  id: string;
+  id: number;
   player_id: number;
   score: number;
   answered_at: string;
