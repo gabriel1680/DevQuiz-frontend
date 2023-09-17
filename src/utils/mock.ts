@@ -25,12 +25,12 @@ export const randomQuestionsApiMock = [
 
 export const playerQuizzesMock = [
   {
-    id: "7ebd1b4b-d3c5-4e84-b77c-171c2d47d49a",
+    id: 1,
     answeredAt: new Date("2022-08-16"),
     score: 2,
   },
   {
-    id: "d96a197e-6fb3-4a02-afa4-411f3037bcd1",
+    id: 2,
     answeredAt: new Date("2022-08-16"),
     score: 4,
   },

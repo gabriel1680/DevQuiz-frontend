@@ -6,6 +6,7 @@ import ScoreResult from "../components/ScoreResult";
 import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
 import usePlayer, { useQuizGateway } from "../hooks/context-hooks";
 import { Answer } from "../types/Quiz";
+import { getUniqueId } from "../utils/id";
 
 export default function QuizView() {
   const quizGetaway = useQuizGateway();
@@ -20,7 +21,7 @@ export default function QuizView() {
   async function onGameOver(answers: Answer[], score: number) {
     try {
       await quizGetaway.saveQuizScore({
-        id: crypto.randomUUID(),
+        id: getUniqueId(),
         playerId: player.id,
         score,
         answeredAt: new Date(),

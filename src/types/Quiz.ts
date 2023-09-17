@@ -13,7 +13,7 @@ export type Question = {
 };
 
 export type UserQuiz = {
-  id: string;
+  id: number;
   playerId: number;
   score: number;
   answeredAt: Date;
