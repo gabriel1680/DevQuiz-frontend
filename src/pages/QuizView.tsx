@@ -18,13 +18,18 @@ export default function QuizView() {
   const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
   async function onGameOver(answers: Answer[], score: number) {
-    await quizGetaway.saveQuizScore({
-      id: crypto.randomUUID(),
-      score,
-      answeredAt: new Date(),
-    });
-    setIsGameOver(true);
-    setFinalScore(score);
+    try {
+      await quizGetaway.saveQuizScore({
+        id: crypto.randomUUID(),
+        score,
+        answeredAt: new Date(),
+      });
+      setIsGameOver(true);
+      setFinalScore(score);
+    } catch (error) {
+      console.error(error);
+      alert("Parece que algo deu errado ao salvar os dados.");
+    }
   }
 
   async function onRetry(): Promise<void> {

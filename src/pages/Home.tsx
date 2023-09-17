@@ -19,9 +19,9 @@ export default function Home() {
   );
 
   function onRemoveQuiz(quiz: UserQuiz) {
-    setRefetch(prev => (prev += 1));
     quizGateway
       .removeQuizAnswer(quiz.id)
+      .then(() => setRefetch(prev => (prev += 1)))
       .catch(() => alert("Houve um erro ao remover o quiz"));
   }
 

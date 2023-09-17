@@ -19,14 +19,24 @@ function App() {
   const { username, error, isLoading } = useGetPlayerInfo(refetch);
 
   async function onCreateUsername(name: string) {
-    await playerGateway.saveUsername(name);
-    setRefetch(prev => (prev += 1));
+    try {
+      await playerGateway.saveUsername(name);
+      setRefetch(prev => (prev += 1));
+    } catch (error) {
+      alert("Parece que algo deu errado.");
+      console.error(error);
+    }
   }
 
   async function onChangeUsername(name: string) {
-    await playerGateway.changeUsername(name);
-    setRefetch(prev => (prev += 1));
-    setShowChangeUsername(false);
+    try {
+      await playerGateway.changeUsername(name);
+      setRefetch(prev => (prev += 1));
+      setShowChangeUsername(false);
+    } catch (error) {
+      alert("Parece que algo deu errado.");
+      console.error(error);
+    }
   }
 
   if (isLoading) {
