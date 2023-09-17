@@ -1,8 +1,9 @@
-import { Axios } from "axios";
+import { AxiosInstance } from "axios";
+
 import { PlayerGateway } from "../PlayerGateway";
 
 export class AxiosPlayerGateway implements PlayerGateway {
-  constructor(private readonly api: Axios) {}
+  constructor(private readonly api: AxiosInstance) {}
 
   getUsername(): Promise<string> {
     return this.api.get("/player/username");

@@ -1,12 +1,12 @@
+import { AxiosInstance } from "axios";
 import { v4 as uuid } from "uuid";
-import { Axios } from "axios";
 
 import { Question } from "../../types/Quiz";
-import { RandomQuestionsGateway } from "../RandomQuestionsGateway";
 import { randomQuestionsApiMock } from "../../utils/mock";
+import { RandomQuestionsGateway } from "../RandomQuestionsGateway";
 
-export class InMemoryRandomQuestionsGateway implements RandomQuestionsGateway {
-  constructor(private readonly api: Axios) {}
+export class AxiosRandomQuestionsGateway implements RandomQuestionsGateway {
+  constructor(private readonly api: AxiosInstance) {}
 
   async getRadomQuestions(): Promise<Question[]> {
     const { data } = await this.api.get<typeof randomQuestionsApiMock>("");

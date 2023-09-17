@@ -2,23 +2,25 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App.js";
+import
+  {
+    PlayerGatewayContext,
+    QuizGatewayContext,
+    RandomQuestionsGatewayContext,
+  } from "./context/GatewayContext.js";
+import { AppGatewayFactory } from "./gateways/AppGatewayFactory.js";
 import "./index.css";
-import {
-  PlayerGatewayContext,
-  QuizGatewayContext,
-  RandomQuestionsGatewayContext,
-} from "./context/GatewayContext.js";
-import { InMemoryPlayerGateway } from "./gateways/memory/InMemoryPlayerGateway.js";
-import { InMemoryQuizGateway } from "./gateways/memory/InMemoryQuizGateway.js";
-import { InMemoryRandomQuestionsGateway } from "./gateways/memory/InMemoryRandomQuestionsGateway.js";
+
+const isDev = import.meta.env.DEV;
+
+const { playerGateway, quizGateway, randomQuestionsGateway } =
+  AppGatewayFactory.create(isDev ? "memory" : "axios");
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <PlayerGatewayContext.Provider value={new InMemoryPlayerGateway()}>
-      <QuizGatewayContext.Provider value={new InMemoryQuizGateway()}>
-        <RandomQuestionsGatewayContext.Provider
-          value={new InMemoryRandomQuestionsGateway()}
-        >
+    <PlayerGatewayContext.Provider value={playerGateway}>
+      <QuizGatewayContext.Provider value={quizGateway}>
+        <RandomQuestionsGatewayContext.Provider value={randomQuestionsGateway}>
           <App />
         </RandomQuestionsGatewayContext.Provider>
       </QuizGatewayContext.Provider>

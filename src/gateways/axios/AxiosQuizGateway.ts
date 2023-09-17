@@ -1,10 +1,10 @@
-import { Axios } from "axios";
+import { AxiosInstance } from "axios";
 
 import { UserQuiz } from "../../types/Quiz";
 import { QuizGateway } from "../QuizGateway";
 
 export class AxiosQuizGateway implements QuizGateway {
-  constructor(private readonly api: Axios) {}
+  constructor(private readonly api: AxiosInstance) {}
 
   saveQuizScore(quiz: UserQuiz): Promise<void> {
     return this.api.post("/quizzes", quiz);
