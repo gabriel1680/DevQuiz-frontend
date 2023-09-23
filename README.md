@@ -1,17 +1,17 @@
 # DevQuiz
 
-Uma SPA de quizzes para devs.
+Uma SPA de quizzes para devs utilizando reactjs.
 
 ## Execution
 
-Instalando as dependências
+Criando o build da imagem no docker:
 
 ```sh
-npm install
+docker build . -t devquiz-frontend
 ```
 
-Rodando em modo dev
+Criando o container e rodando-o:
 
 ```sh
-npm run dev
+docker run -d --name devquiz-frontend -p 5173:5173 devquiz-frontend
 ```
