@@ -15,3 +15,5 @@ Criando o container e rodando-o:
 ```sh
 docker run -d --name devquiz-frontend -p 5173:5173 devquiz-frontend
 ```
+
+Aplicação está agora rodando em `http://localhost:5173`
