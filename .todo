@@ -21,4 +21,4 @@
 ✔ Adicinoar integração com a API externa (criar um Gateway?); @done(23-09-17 19:54)
 ✔ Adicionar chamadas à API; @done(23-09-17 19:54)
 ✔ Adicionar dockerfile; @done(23-09-23 17:00)
-☐ Apresentar na documentação a componente A a API externa que será utilizada, deixando claro informações como: licença de uso, cadastro (se necessário) e rotas que serão utilizados.
+✔ Apresentar na documentação a componente A a API externa que será utilizada, deixando claro informações como: licença de uso, cadastro (se necessário) e rotas que serão utilizados. @done(23-09-23 17:14)

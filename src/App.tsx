@@ -53,7 +53,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="main-container">
       {error && <ErrorContainer error={error} />}
       {showChangeUsername && (
         <Modal onClose={() => setShowChangeUsername(false)}>
@@ -70,7 +70,7 @@ function App() {
           <RouterProvider router={router} />
         </PlayerContext.Provider>
       )}
-    </>
+    </div>
   );
 }
 
