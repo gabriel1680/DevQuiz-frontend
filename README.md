@@ -7,7 +7,10 @@ As respostas são salvas e enviadas para o backend com a pontuação.
 
 Essa api não precisa de nenhum cadastro prévio e pode ser utilizada sem restrições. Há uma opção em que é necessário o login e utilização do token. Mas para esse projeto não é necessário.
 
-Para mais detalhes acessa a documentação da api em https://opentdb.com/api_config.php
+Esse serviço está sob a licença `Creative Commons Attribution-ShareAlike 4.0 International License` e será utilizado somente 
+um endpoint da aplicação: `https://opentdb.com/api.php?amount=10`.
+
+Para mais detalhes acesse a documentação da api em https://opentdb.com/api_config.php.
 
 ## Execution
 
