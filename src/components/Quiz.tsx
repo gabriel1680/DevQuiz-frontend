@@ -41,18 +41,29 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
   }
 
   if (isQuestionsEmpty()) {
-    return <p>Nenhuma questão foi encontrada )=</p>
+    return <p>Nenhuma questão foi encontrada )=</p>;
   }
 
   return (
     <div>
-        <QuizQuestion question={currentQuestion} handleAnswer={handleAnswer} />
-        <button
-          onClick={isLastStep() ? onLastStep : onNextStep}
-          disabled={!haveAnsweredCurrentStep}
-        >
-          {isLastStep() ? "Finalizar" : "Próximo"}
-        </button>
+      <QuizQuestion question={currentQuestion} handleAnswer={handleAnswer} />
+      <button
+        onClick={isLastStep() ? onLastStep : onNextStep}
+        style={{
+          padding: "8px",
+          backgroundColor: "#EE4876",
+          border: "none",
+          borderRadius: "60px",
+          width: "100%",
+          color: "white",
+          cursor: "pointer",
+          margin: "24px 0",
+          fontSize: "18px",
+        }}
+        disabled={!haveAnsweredCurrentStep}
+      >
+        {isLastStep() ? "Finalizar" : "Próximo"}
+      </button>
     </div>
   );
 
