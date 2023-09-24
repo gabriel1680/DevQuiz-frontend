@@ -8,6 +8,7 @@ export type Question = {
   id: string;
   index: number;
   text: string;
+  difficulty: string;
   answers: Answer[];
   correctAnswer: string;
 };
