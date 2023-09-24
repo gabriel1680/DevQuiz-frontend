@@ -2,5 +2,11 @@ import { createContext } from "react";
 
 import { Player } from "../types/Player";
 
-export const PlayerContext = createContext<undefined | Player>(undefined);
+type PlayerContextType = {
+  player: Player;
+  openChangeUsernameModal: () => void;
+};
 
+export const PlayerContext = createContext<PlayerContextType>(
+  {} as PlayerContextType
+);

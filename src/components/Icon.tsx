@@ -1,6 +1,6 @@
-export default function Icon({ icon, onClick }: IconProps) {
+export default function Icon({ icon, onClick, style }: IconProps) {
   return (
-    <i className="material-symbols-outlined clickable" onClick={onClick}>
+    <i style={style} className="material-symbols-outlined clickable" onClick={onClick}>
       {icon}
     </i>
   );

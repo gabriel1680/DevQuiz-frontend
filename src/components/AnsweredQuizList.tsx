@@ -10,11 +10,11 @@ export function AnsweredQuizList({
   }
 
   return (
-    <ul>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
       {quizzes.map(quiz => (
         <PlayerQuizCard key={quiz.id} quiz={quiz} onRemoveQuiz={onRemoveQuiz} />
       ))}
-    </ul>
+    </div>
   );
 }
 

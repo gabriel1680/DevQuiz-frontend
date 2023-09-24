@@ -21,7 +21,9 @@ function App() {
 
   async function onCreateUsername(playerData: Player) {
     try {
-      const playerOrError = await playerGateway.createPlayer(playerData.username);
+      const playerOrError = await playerGateway.createPlayer(
+        playerData.username
+      );
       if (playerOrError instanceof Error) {
         return alert(playerOrError.message);
       }
@@ -48,6 +50,10 @@ function App() {
     }
   }
 
+  function openChangeUsernameModal() {
+    setShowChangeUsername(true);
+  }
+
   if (isLoading) {
     return "Buscando dados do jogador...";
   }
@@ -63,10 +69,12 @@ function App() {
       {!player ? (
         <PlayerForm onSubmit={onCreateUsername} />
       ) : (
-        <PlayerContext.Provider value={player}>
-          <button onClick={() => setShowChangeUsername(true)}>
-            Alterar nome de usuário
-          </button>
+        <PlayerContext.Provider
+          value={{
+            player,
+            openChangeUsernameModal,
+          }}
+        >
           <RouterProvider router={router} />
         </PlayerContext.Provider>
       )}

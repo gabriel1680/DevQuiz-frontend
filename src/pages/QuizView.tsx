@@ -15,7 +15,7 @@ export default function QuizView() {
   const [finalScore, setFinalScore] = useState(0);
   const [refetch, setRefetch] = useState(0);
 
-  const player = usePlayer();
+  const { player } = usePlayer();
 
   const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
