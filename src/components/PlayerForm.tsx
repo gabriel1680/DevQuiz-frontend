@@ -17,23 +17,60 @@ export function PlayerForm({ player, onSubmit }: PlayerFormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>
-        {player
-          ? "Altere seu nome de usuário"
-          : "Crie um nome de usuário para começar"}
-      </h2>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        disabled={isLoading}
-        value={value.username}
-        onChange={e => onChange(e.target.value)}
-        placeholder="Insira seu username"
-      />
-      <button type="submit" disabled={isLoading}>
-        {player ? "Alterar" : "Iniciar"}
-      </button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h2>
+          {player
+            ? "Altere seu nome de usuário"
+            : "Crie um nome de usuário para começar"}
+        </h2>
+        <div
+          style={{
+            width: "300px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <input
+            type="text"
+            name="username"
+            id="username"
+            style={{
+              margin: "16px 0",
+              fontSize: "18px",
+              padding: "8px",
+              width: "100%",
+            }}
+            disabled={isLoading}
+            value={value.username}
+            onChange={e => onChange(e.target.value)}
+            placeholder="Insira seu username"
+          />
+          <button
+            type="submit"
+            disabled={isLoading}
+            style={{
+              padding: "8px 32px",
+              backgroundColor: "#EE4876",
+              border: "none",
+              borderRadius: "60px",
+              color: "white",
+              cursor: "pointer",
+              fontSize: "18px",
+              width: "100%",
+            }}
+          >
+            {player ? "Alterar" : "Iniciar"}
+          </button>
+        </div>
+      </div>
     </form>
   );
 

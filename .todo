@@ -18,6 +18,11 @@
 ☐ Adicionar a dificuldade nos cards dos quizzes e a categoria;
 ☐ Adicioanr os estilos;
 ☐ Mostrar a dificuldade no quiz;
+✔ Estilos da Home; @done(23-09-24 14:55)
+☐ Estilos do form de criação;
+☐ Estilos do form de edição;
+☐ Estilos do Quiz;
+☐ Estilos da tela resultado do Quiz;
 ✔ Adicinoar integração com a API externa (criar um Gateway?); @done(23-09-17 19:54)
 ✔ Adicionar chamadas à API; @done(23-09-17 19:54)
 ✔ Adicionar dockerfile; @done(23-09-23 17:00)
