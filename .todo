@@ -16,6 +16,7 @@
 ✔ Adicionar msg de erro quando o nome já existir; @done(23-09-17 19:44)
 ✔ Adicionar mensagem quando a lista de quizzes estiver vazia; @done(23-09-17 19:50)
 ☐ Adicionar a dificuldade nos cards dos quizzes e a categoria;
+✔ Adicionar a dificuldade nas questões; @done(23-09-24 18:39)
 ☐ Adicioanr os estilos;
 ☐ Mostrar a dificuldade no quiz;
 ✔ Estilos da Home; @done(23-09-24 14:55)
