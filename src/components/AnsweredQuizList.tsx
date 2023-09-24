@@ -10,7 +10,9 @@ export function AnsweredQuizList({
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+    <div
+      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}
+    >
       {quizzes.map(quiz => (
         <PlayerQuizCard key={quiz.id} quiz={quiz} onRemoveQuiz={onRemoveQuiz} />
       ))}

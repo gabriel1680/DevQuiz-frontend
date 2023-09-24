@@ -2,8 +2,9 @@ import { Answer } from "../types/Quiz";
 
 export function QuizAnswer({ answer, handleAnswer }: QuizAnswerProps) {
   return (
-    <div>
+    <div style={{ margin: '8px 0' }}>
       <input
+        style={{ cursor: 'pointer' }}
         type="radio"
         name={`Q[${answer.questionId}]`}
         value={answer.text}
