@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Button from "./Button";
 
 export default function ScoreResult({
   username,
@@ -26,22 +26,7 @@ export default function ScoreResult({
         {totalScore}
       </div>
       <div>
-        <button
-          style={{
-            padding: "8px",
-            backgroundColor: "#EE4876",
-            border: "none",
-            borderRadius: "60px",
-            width: "100%",
-            color: "white",
-            cursor: "pointer",
-            margin: "24px 0",
-            fontSize: "18px",
-          }}
-          onClick={onRetry}
-        >
-          Iniciar uma nova tentativa
-        </button>
+        <Button onClick={onRetry}>Iniciar uma nova tentativa</Button>
       </div>
     </div>
   );

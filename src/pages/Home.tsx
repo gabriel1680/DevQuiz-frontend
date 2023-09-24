@@ -7,6 +7,7 @@ import usePlayer, { useQuizGateway } from "../hooks/context-hooks";
 import { UserQuiz } from "../types/Quiz";
 import { AnsweredQuizList } from "../components/AnsweredQuizList";
 import Icon from "../components/Icon";
+import Button from "../components/Button";
 
 export default function Home() {
   const { player, openChangeUsernameModal } = usePlayer();
@@ -49,21 +50,7 @@ export default function Home() {
         </b>
       </div>
       <Link to="/quiz">
-        <button
-          style={{
-            padding: "8px",
-            backgroundColor: "#EE4876",
-            border: "none",
-            borderRadius: "60px",
-            width: "100%",
-            color: "white",
-            cursor: "pointer",
-            margin: "24px 0",
-            fontSize: "18px",
-          }}
-        >
-          INICIAR QUIZ
-        </button>
+        <Button>INICIAR QUIZ</Button>
       </Link>
       <div style={{ padding: "16px", textAlign: "center" }}>
         Últimos envios:

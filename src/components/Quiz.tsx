@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Answer, Question } from "../types/Quiz";
 import { QuizQuestion } from "./QuizQuestion";
+import Button from "./Button";
 
 export function Quiz({ questions, onGameOver }: QuizProps) {
   const [step, setStep] = useState(0);
@@ -29,7 +30,7 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
     if (isCorrectAnswer()) {
       finalScore++;
     }
-    onGameOver(Array.from(answers.values()), finalScore);
+    onGameOver(finalScore);
     reset();
   }
 
@@ -47,23 +48,12 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
   return (
     <div>
       <QuizQuestion question={currentQuestion} handleAnswer={handleAnswer} />
-      <button
+      <Button
         onClick={isLastStep() ? onLastStep : onNextStep}
-        style={{
-          padding: "8px",
-          backgroundColor: "#EE4876",
-          border: "none",
-          borderRadius: "60px",
-          width: "100%",
-          color: "white",
-          cursor: "pointer",
-          margin: "24px 0",
-          fontSize: "18px",
-        }}
         disabled={!haveAnsweredCurrentStep}
       >
         {isLastStep() ? "Finalizar" : "Próximo"}
-      </button>
+      </Button>
     </div>
   );
 
@@ -84,5 +74,5 @@ export function Quiz({ questions, onGameOver }: QuizProps) {
 
 type QuizProps = {
   questions: Question[];
-  onGameOver: (answers: Answer[], score: number) => Promise<void>;
+  onGameOver: (score: number) => Promise<void>;
 };

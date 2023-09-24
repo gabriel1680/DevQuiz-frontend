@@ -1,13 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { ErrorContainer } from "../components/ErrorContainer";
 import { Quiz } from "../components/Quiz";
 import ScoreResult from "../components/ScoreResult";
 import useGetRandomQuestions from "../hooks/useGetRandomQuestions";
 import usePlayer, { useQuizGateway } from "../hooks/context-hooks";
-import { Answer } from "../types/Quiz";
 import { getUniqueId } from "../utils/id";
-import { Link } from "react-router-dom";
 
 export default function QuizView() {
   const quizGetaway = useQuizGateway();
@@ -19,7 +18,7 @@ export default function QuizView() {
 
   const { questions, error, isLoading } = useGetRandomQuestions(refetch);
 
-  async function onGameOver(answers: Answer[], score: number) {
+  async function onGameOver(score: number) {
     try {
       await quizGetaway.saveQuizScore({
         id: getUniqueId(),

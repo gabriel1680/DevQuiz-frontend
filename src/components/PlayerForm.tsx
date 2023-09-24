@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { Player } from "../types/Player";
+import Button from "./Button";
 
 export function PlayerForm({ player, onSubmit }: PlayerFormProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,22 +55,9 @@ export function PlayerForm({ player, onSubmit }: PlayerFormProps) {
             onChange={e => onChange(e.target.value)}
             placeholder="Insira seu username"
           />
-          <button
-            type="submit"
-            disabled={isLoading}
-            style={{
-              padding: "8px 32px",
-              backgroundColor: "#EE4876",
-              border: "none",
-              borderRadius: "60px",
-              color: "white",
-              cursor: "pointer",
-              fontSize: "18px",
-              width: "100%",
-            }}
-          >
+          <Button disabled={isLoading} loading={isLoading}>
             {player ? "Alterar" : "Iniciar"}
-          </button>
+          </Button>
         </div>
       </div>
     </form>
